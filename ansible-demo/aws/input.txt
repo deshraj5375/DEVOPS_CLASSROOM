@@ -1,0 +1,11 @@
+
+---
+key_name: desh
+instance_type: t2.micro
+image: ami-5b673c34
+count: 1
+vpc_subnet_id: subnet-e6de8f8e
+assign_public_ip: yes
+region: ap-south-1
+aws_access_key: 
+aws_secret_key: 

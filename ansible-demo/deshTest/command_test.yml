@@ -1,0 +1,5 @@
+---
+- hosts: server
+  tasks:
+  - name: "example of command"
+    command: "cat /etc/motd"

@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  vars:
+    array_o_number: 
+      - l1
+      - l2
+      - l3
+      - l4
+  tasks:
+    -  name: "print the minimum from an array"
+       debug: msg='lowest is {{ array_o_number | min }}'

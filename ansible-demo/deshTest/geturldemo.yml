@@ -1,0 +1,8 @@
+---
+- hosts: server
+  become: true
+  tasks:
+  -  name: "this is demo or url" 
+     get_url:
+       url: http://example.com/path/file.conf
+       dest: /etc/foo.conf
