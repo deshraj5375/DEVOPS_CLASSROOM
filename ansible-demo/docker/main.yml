@@ -1,4 +1,15 @@
 ---
-- hosts: server
+- name: "ec2 creation"
+  hosts: localhost
   roles:
   - docker_creation 
+
+
+- name: "installing docker"
+  hosts: docker
+  become: yes
+  remote_user: ubuntu
+  environment:
+    ANSIBLE_CONFIG: "ansible.cfg"
+  roles:
+    - docker_install
