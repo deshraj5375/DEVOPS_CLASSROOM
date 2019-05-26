@@ -1,3 +1,11 @@
 ---
 # defaults file for roles/docker_creation
 
+
+keypair: "desh"
+sg_group: "Docker-secuirty"
+instance_type: "t2.micro"
+ami: "ami-0a574895390037a62"
+region: "ap-south-1"
+subnet_id: "subnet-e6de8f8e"
+

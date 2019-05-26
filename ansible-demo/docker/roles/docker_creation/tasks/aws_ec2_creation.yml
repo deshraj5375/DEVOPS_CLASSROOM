@@ -15,6 +15,10 @@
       Name: "Docker_tag"
     instance_tags:
       Name: "Docker_instance_tag"
+    user_data: |
+               #! /bin/bash
+               sudo apt-get install python -y
+      
     vpc_subnet_id: "{{ subnet_id }}" 
     assign_public_ip: yes
   register: ec2   
