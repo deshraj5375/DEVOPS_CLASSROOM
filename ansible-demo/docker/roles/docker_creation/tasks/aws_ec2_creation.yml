@@ -1,0 +1,48 @@
+---
+
+- name: "Create an ec2 instance"
+  ec2:
+    key_name: "{{ keypair }}"
+    aws_access_key: "{{ aws_access }}"
+    aws_secret_key: "{{ aws_secret }}"
+    group: "{{ sg_group }}"  
+    instance_type: "{{ instance_type}}"
+    image: "{{ ami }}"
+    wait: true
+    region: "{{ region }}"
+    count: 1
+    count_tag:
+      Name: "Docker_tag"
+    instance_tags:
+      Name: "Docker_instance_tag"
+    user_data: |
+               #! /bin/bash
+               sudo apt-get install python -y
+      
+    vpc_subnet_id: "{{ subnet_id }}" 
+    assign_public_ip: yes
+  register: ec2   
+
+- debug:
+    msg: "{{ item['private_ip'] }}"
+  with_items: "{{ ec2.instances }}" 
+
+- name: " Adding this ec2 instances in inventiry file"
+  add_host:
+    hostname: "{{ item.private_ip }}"
+    groupname: docker
+    ansible_user: ubuntu
+  with_items: '{{ ec2.instances }}'
+
+
+- name: "Waiting until ec2 is ready for ssh "
+  wait_for: 
+    host: "{{ item.public_dns_name }}"
+    port: 22
+    delay: 60
+    timeout: 320   
+    state: started
+  with_items: "{{ ec2.instances  }}"
+
+  
+

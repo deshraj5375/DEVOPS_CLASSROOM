@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  vars:
+    web_dep:
+      -  python
+      -  python-setuptools
+      -  python-dev
+      -  python-essential
+      -  python-pip
+      -  python-mysqldb
+    sql_dep:
+      -  python
+      -  python-mysqldb
+  tasks:  
+  - name: "installing depenmcies"
+    debug: msg='{{ item }}'
+    with_items: '{{ sql_dep | union(web_dep) }}' 

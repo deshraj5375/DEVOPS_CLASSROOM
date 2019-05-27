@@ -1,0 +1,20 @@
+---
+# tasks file for roles/mysql
+
+- name: "downloading repo"
+  get_url: 
+    url: http://repo.mysql.com/mysql-community-release-el7-7.noarch.rpm
+    dest: /tmp
+
+- name: "installing rpm package"
+  command: /usr/bin/rpm -ivh /tmp/mysql-community-release-el7-7.noarch.rpm
+  become: true
+  ignore_errors: yes
+
+- name: "installing mysql"
+  yum:
+    name: " {{ item }} "
+    state: installed
+  with_items: ["mysql-server"]  
+  become: true
+  

@@ -1,0 +1,9 @@
+---
+- hosts: server
+  tasks:
+  -  user:
+       name: "deshtest"
+       comment: "This is testing"
+       #state: absent
+       password: test
+  become: true

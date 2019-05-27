@@ -1,0 +1,9 @@
+---
+# tasks file for roles/docker_creation
+
+- include: aws_ec2_creation.yml 
+
+#- include: docker_user_creation.yml
+
+
+#- include: install_docker_maven.yml

@@ -1,0 +1,8 @@
+---
+- hosts: server
+  become: true
+  tasks:
+  -  copy: 
+#this line is not allowed       name:"example of copy module"
+       src: /opt/ansible-demo/deshTest/test.txt
+       dest: /opt/desh/test.txt
